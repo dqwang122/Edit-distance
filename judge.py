@@ -96,6 +96,9 @@ if __name__ == '__main__':
         a = ilines[0]
         b = ilines[1]
         ta = trans(a, olines)
+        f = open('result.in', 'w')
+        f.write(ta)
+        f.close()
 
         if ta != -1:
             if ta == b:
@@ -123,7 +126,8 @@ if __name__ == '__main__':
             exit(-1)
 
         ta = trans(a, olines[1:])
-
+        print(ta)
+        
         if ta != -1:
             if ta == b:
                 print(olines[1])

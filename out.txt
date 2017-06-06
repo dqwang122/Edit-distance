@@ -1,0 +1,6 @@
+5
+DEL 0
+DEL 4
+DEL 6
+DEL 7
+SUB 9 C
