@@ -1,5 +1,6 @@
 import argparse
 import types
+import time
 from tools import *
 
 Operate = ["DEL", "INS", "SUB"]
@@ -72,38 +73,7 @@ def EditDis(a, b):
 			Pos.append(i-1)
 			i = i - 1
 			j = j - 1
-	return dist, Ops, Pos
-	
-# Calculate the Edit Distance
-# Input:
-	# a, b: str, a to b
-	# path: array, show the direction
-	# i, j: int, current position
-	# Ops: list of int, Operate idx
-		# if Op == 1 or 2, the element will be (2, 'A')
-	# Pos: list of int, position of a
-# Output:
-	# None
-# def RePath(a, b, path, i, j, Ops, Pos):
-	# if i == 0 and j == 0:
-		# return
-	# if path[i][j] == -1:
-		# RePath(a, b, path, i - 1, j - 1, Ops, Pos)
-		# return 
-	# if path[i][j] == 0: # DEL
-		# RePath(a, b, path, i - 1, j, Ops, Pos)
-		# Ops.append(0)
-		# Pos.append(i-1)
-	# elif path[i][j] == 1: # INS
-		# RePath(a, b, path, i, j - 1, Ops, Pos)
-		# Ops.append((1, b[j-1]))
-		# Pos.append(i-1)
-	# elif path[i][j] == 2: # SUB
-		# RePath(a, b, path, i - 1, j - 1, Ops, Pos)
-		# Ops.append((2, b[j-1]))
-		# Pos.append(i-1)
-	# return
-	
+	return dist, Ops, Pos	
 
 # Write standard File
 # Input:
@@ -152,7 +122,11 @@ if __name__ == '__main__':
 	parser.add_argument('-o', metavar='outfile')
 	args = parser.parse_args()
 
+	start = time.clock()
 	Task1(args.i, args.o)
+	end = time.clock()
+	
+	print("Running time is : " + str(end-start))
 
 # a = 'ABCDABADBDC'
 # b = 'BCDBBCC'
