@@ -1,11 +1,11 @@
 # Project：de Bruijn图上的编辑距离
 ## 更新记录
-2017-5-28:
-前两个任务的测试数据
-评测系统
-2017-5-30:
-第三个任务的测试数据
-注意：修改了编辑过程的输出格式 
+2017-5-28:<br>
+前两个任务的测试数据<br>
+评测系统<br>
+2017-5-30:<br>
+第三个任务的测试数据<br>
+注意：修改了编辑过程的输出格式<br> 
 
 ## 背景
 ### 编辑距离
@@ -84,17 +84,17 @@
 ## 样例数据
 ### Task 1
 ```
-  输入
+输入
   ABCDABADBDC
   BCDBBCC 
-  输出
+输出
   5
   DEL 0
   DEL 4
   DEL 6
   DEL 7
   SUB 9 C 
-  解释
+解释
   ABCDABADBDC
    ||| |  | |
    BCD B  BCC
@@ -108,25 +108,25 @@
 ### Task 2 & 3
 ```
 输入
-AACCATCG
-11
-ACG
-TCG
-CGA
-CGC
-CTG
-GAT
-GCA
-GCT
-ATG
-CAT
-CTT 
+  AACCATCG
+  11
+  ACG
+	TCG
+  CGA
+  CGC
+  CTG
+  GAT
+  GCA
+  GCT
+  ATG
+  CAT
+  CTT 
 输出
-ACGCATG
-3
-DEL 0
-INS 3 G
-DEL 6 
+  ACGCATG
+  3
+  DEL 0
+  INS 3 G
+  DEL 6 
 解释
 输出第一行为图中路径ACG-CGC-GCA-CAT-ATG对应的字符串
 
@@ -139,23 +139,26 @@ AAC CATCG
 #2 *AC G CATG 
 ```
 
-###输入文件下载
-数据名称 数据类型 文件下载 		
-task1	task1	点我下载
-task2	task2	点我下载
-task3	task3	点我下载
+### 输入文件下载
+数据名称 数据类型 文件下载<br>		
+task1	task1	点我下载<br>
+task2	task2	点我下载<br>
+task3	task3	点我下载<br>
 
 ## 评判与提交
 ### 评判标准
-对于上述三个任务请想办法求出尽可能好（编辑距离尽可能小）的结果。 请将输出文件提交至指定网页，并在期末时请提交源代码以及项目报告。 我们会按照你得出的编辑距离大小排行以及你的期末报告，决定成绩。 
-点我进入评测系统网站 
+对于上述三个任务请想办法求出尽可能好（编辑距离尽可能小）的结果。<br>
+请将输出文件提交至指定网页，并在期末时请提交源代码以及项目报告。<br>
+我们会按照你得出的编辑距离大小排行以及你的期末报告，决定成绩。 <br>
+[点我进入评测系统网站](http://datamining-iip.fudan.edu.cn/ppts/algo/pj2017/login.html) 
+密码：fq35
 ### 编辑过程检查工具
 需要python3 
-点我下载 
+[点我下载](http://datamining-iip.fudan.edu.cn/ppts/algo/pj2017/tools/judge.zip) 
 
 ## 联系我们
-非常抱歉，今年因为毕业论文的关系现在才搞好算法课的pj。 
-由于据期末没多少时间了，所以比较困难的第三个任务改为选做。
-如果对pj还有什么疑问可以联系我: 
+非常抱歉，今年因为毕业论文的关系现在才搞好算法课的pj。<br> 
+由于据期末没多少时间了，所以比较困难的第三个任务改为选做。<br>
+如果对pj还有什么疑问可以联系我: <br>
 孙勤正 13307130098@fudan.edu.cn 
 
