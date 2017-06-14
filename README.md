@@ -14,7 +14,7 @@
 * 删除 若 a=uxv,删除字符 x 得到 a=uv 
 * 替换 对于字符 x,y 且 x≠y, 将 a=uxy 转化为 a=uyv
 ### de Bruijn 图
-在图论中，一个 k 阶 de Bruijn 图是一个用来表示序列交叠的有向图。<br>  
+在图论中，一个 k 阶 [de Bruijn](https://en.wikipedia.org/wiki/De_Bruijn_graph) 图是一个用来表示序列交叠的有向图。<br>  
 * 图中的每个节点表示一个长度为 k 的字符串
 * 若两个节点的字符序列有 k−1 的交叠即在这两个节点之间连一条有向边 
 ```
