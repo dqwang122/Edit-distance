@@ -125,23 +125,3 @@ void Task1(string infile, string outfile) {
 	writefile(outfile, dist, Ops, Obj, Pos);
 }
 
-int main()
-{
-	string infile, outfile;
-	cout << "infile: ";
-	cin >> infile;
-	cout << "outfile: ";
-	cin >> outfile;
-	
-	clock_t start = clock();
-
-	Task1(infile, outfile);
-
-	clock_t end = clock();
-
-	cout << "Running time is : " << static_cast<double>(end - start) / CLOCKS_PER_SEC << endl;
-
-//	printf("Hello world!\n");
-    return 0;
-}
-

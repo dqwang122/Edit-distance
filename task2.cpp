@@ -1,7 +1,5 @@
 #include "task2.h"
 
-#define MAX_NODE 10000
-#define MAX_LEN 10000
 
 int CharNum;
 
@@ -84,7 +82,8 @@ map<int, int> CreatGraph(string *nodes, int nodeNum, char* Cset, Edge *edges) {
 }
 
 void Show(map<int, int> HashNode, Edge *edges, int nodeNum, string* nodes) {
-	ofstream fout("edges.txt");
+	ofstream fout;
+	fout.open("edges.txt");
 	for (int i = 0; i < nodeNum; i++) {
 		list<int>::iterator p = edges[i].adjList.begin();
 		while (p != edges[i].adjList.end()) {
@@ -98,58 +97,47 @@ void Show(map<int, int> HashNode, Edge *edges, int nodeNum, string* nodes) {
 			p++;
 		}
 	}
+	fout.close();
 }
 
-void showarray(int** a, int m, int n) {
+void showarray(int* a, int m) {
 	for (int i = 0; i < m; i++) {
-		for (int j = 0; j < n; j++)
-			cout << a[i][j] << ",";
-		cout << endl;
+		cout << a[i] << ",";
 	}
+	cout << endl;
 }
 
-void EditDis_inner(string a, string b, int** edit) {
-	int m = a.length();
-	int n = b.length();
-	for (int i = 0; i <= m; i++)
-		edit[i][0] = i;
-	for (int j = 0; j <= n; j++)
-		edit[0][j] = j;
-	for (int i = 1; i <= m; i++) {
-		for (int j = 1; j <= n; j++) {
-			int diff = (a[i - 1] == b[j - 1] ? 0 : 1);
-			int DEL = edit[i - 1][j] + 1;
-			int INS = edit[i][j - 1] + 1;
-			int SUB = edit[i - 1][j - 1] + diff;
-			if (DEL <= INS && DEL <= SUB) {
-				edit[i][j] = DEL;
-			}
-			else if (INS <= DEL && INS <= SUB) {
-				edit[i][j] = INS;
-			}
-			else {
-				edit[i][j] = SUB;
-			}
+void EditDis_inner(string cur, string a, int* ppre, int* curedit) {
+	int target = a.length();
+	curedit[0] = cur.length();
+	char c = cur[cur.length() - 1];
+	for (int h = 1; h <= target; h++) {
+		int diff = (c == a[h - 1] ? 0 : 1);
+		int DEL = ppre[h] + 1;
+		int INS = curedit[h - 1] + 1;
+		int SUB = ppre[h - 1] + diff;
+		if (DEL <= INS && DEL <= SUB) {
+			curedit[h] = DEL;
+		}
+		else if (INS <= DEL && INS <= SUB) {
+			curedit[h] = INS;
+		}
+		else {
+			curedit[h] = SUB;
 		}
 	}
-	int dist = edit[m][n];
 }
 
 int Findmin(Edge *edges, int nodeNum, string* nodes, string a, string start, string *curminstr, int startid) {
 	int k = nodes[0].length();
 	int target = a.length();
-	int **edit;
-	edit = new int*[k + 1];
-
-	for (int i = 0; i <= k; i++) {
-		edit[i] = new int[target + 1]{ 0 };
-	}
-
-	int **curedit;
-	curedit = new int*[2];
-	curedit[0] = new int[target + 1]{ 0 };
-	curedit[1] = new int[target + 1]{ 0 };
-	int *pre = new int[target + 1];
+	
+	int *curedit = new int[target + 1]{ 0 };
+	int *pre = new int[target + 1]{ 0 };
+	int cnt = 0;
+	for (int* i = pre; i - pre <= target; i++, cnt++)
+		*i = cnt;
+	
 
 	int* flag = new int[nodeNum] {0};
 
@@ -157,19 +145,21 @@ int Findmin(Edge *edges, int nodeNum, string* nodes, string a, string start, str
 	int exlen = 0;
 	int curmin;
 
-	EditDis_inner(start, a, edit);
-	//showarray(edit, k + 1, target + 1);
-	curmin = edit[k][target];
-	*curminstr = start;
+	//showarray(pre, target + 1);
+	for(int i = 1; i <= start.length(); i++){
+		EditDis_inner(start.substr(0, i), a, pre, curedit);
+		//showarray(curedit, target + 1);
+		memcpy(pre, curedit, sizeof(int)*(target + 1));
+	}
+	//cout << endl;
 
-	//for (int h = 0; h <= target; h++) {
-	//	pre[h] = edit[k][h];
-	//}
-	memcpy(&pre[0], &edit[k][0], sizeof(int)*(target + 1));
+	curmin = curedit[target];
+	*curminstr = start;
 
 	queue<int> qu;
 	queue<int*> preedit;
 	queue<string> str;
+
 
 	flag[startid] = 1;
 	qu.push(startid);
@@ -183,42 +173,29 @@ int Findmin(Edge *edges, int nodeNum, string* nodes, string a, string start, str
 		preedit.pop();
 		string s = str.front();
 		str.pop();
-		memcpy(&curedit[0][0], &ppre[0], sizeof(int)*(target + 1));
+		// memcpy(&curedit[0][0], &ppre[0], sizeof(int)*(target + 1));
 		list<int>::iterator p = edges[idx].adjList.begin();
 		while (p != edges[idx].adjList.end()) {
 			exlen++;
-			string c = nodes[*p].substr(k - 1, k);
+			char c = nodes[*p][k-1];
 			cur = s + c;
 
-			curedit[1][0] = cur.length();
-			for (int h = 1; h <= target; h++) {
-				int diff = (cur[cur.length() - 1] == a[h - 1] ? 0 : 1);
-				int DEL = curedit[0][h] + 1;
-				int INS = curedit[1][h - 1] + 1;
-				int SUB = curedit[0][h - 1] + diff;
-				if (DEL <= INS && DEL <= SUB) {
-					curedit[1][h] = DEL;
-				}
-				else if (INS <= DEL && INS <= SUB) {
-					curedit[1][h] = INS;
-				}
-				else {
-					curedit[1][h] = SUB;
-				}
-			}
+			EditDis_inner(cur, a, ppre, curedit);
 
-			//cout << endl;
-			//showarray(curedit, 2, target + 1);
+			/*cout << endl;
+			showarray(pre, target + 1);
+			showarray(curedit, target + 1);*/
 
-			if (flag[*p] == 0 || curmin > curedit[1][target]) {
+
+			if (flag[*p] == 0 || curmin > curedit[target]) {
 				qu.push(*p);
 				int *temp = new int[target + 1];
-				memcpy(&temp[0], &curedit[1][0], sizeof(int)*(target + 1));
+				memcpy(&temp[0], &curedit[0], sizeof(int)*(target + 1));
 				preedit.push(temp);
 				str.push(cur);
 			}
-			if (curmin > curedit[1][target]) {
-				curmin = curedit[1][target];
+			if (curmin > curedit[target]) {
+				curmin = curedit[target];
 				*curminstr = cur;
 			}
 
@@ -232,18 +209,17 @@ int Findmin(Edge *edges, int nodeNum, string* nodes, string a, string start, str
 		exlen++;
 
 	}
-	delete[] curedit[0];
-	delete[] curedit[1];
+	delete[] curedit;
 	delete[] flag;
 	return curmin;
 }
 
-string MinEdit(Edge *edges, int nodeNum, string* nodes, string a) {
+int MinEdit(Edge *edges, int nodeNum, string* nodes, string a, string *minstr) {
 	int k = nodes[0].length();
 	int target = a.length();
 	int min = k - 1 + MAX_LEN;
 	//int min = 0.3 * target;
-	string minstr = nodes[0];
+	*minstr = nodes[0];
 
 	string curminstr;
 	int curmin;
@@ -255,32 +231,34 @@ string MinEdit(Edge *edges, int nodeNum, string* nodes, string a) {
 
 		if (min > curmin) {
 			min = curmin;
-			minstr = curminstr;
+			*minstr = curminstr;
 		}
+		printf("%.2lf%%\r", i * 100.0 / nodeNum);
 	}
-	return minstr;
+	return min;
 };
 
 void Task2(string infile, string outfile) {
 	string a, s;
 	int nodeNum;
-	string *nodes = new string[MAX_NODE];
+	string *nodes = new string[MAX_NODE_NUM_L];
 	nodeNum = readfile2(infile, &a, nodes);
 
 	char *Charset = new char[5];
 	get_char(a, Charset);
-	Edge *edges = new Edge[MAX_NODE];
+	Edge *edges = new Edge[MAX_NODE_NUM_L];
 	map<int, int> HashNode = CreatGraph(nodes, nodeNum, Charset, edges);
-	Show(HashNode, edges, nodeNum, nodes);
-
-	s = MinEdit(edges, nodeNum, nodes, a);
+	// Show(HashNode, edges, nodeNum, nodes);
+	cout << "Create Graph complete." << endl;
 
 	int dist;
+	dist = MinEdit(edges, nodeNum, nodes, a, &s);
+
 	int *Ops, *Pos;
 	char *Obj;
-	Ops = new int[MAX_LEN];
-	Pos = new int[MAX_LEN];
-	Obj = new char[MAX_LEN];
+	Ops = new int[dist];
+	Pos = new int[dist];
+	Obj = new char[dist];
 	dist = EditDis(a, s, Ops, Obj, Pos);
 	writefile2(outfile, s, dist, Ops, Obj, Pos);
 };
