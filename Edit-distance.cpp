@@ -14,8 +14,8 @@ int main()
 	//cout << "outfile: ";
 	//cin >> outfile;
 
-	infile = "Task2/task2.in";
-	outfile = "Task2/out.txt";
+	infile = "task2.in";
+	outfile = "out.txt";
 	
 	clock_t start = clock();
 
@@ -26,7 +26,6 @@ int main()
 
 	cout << "Running time is : " << static_cast<double>(end - start) / CLOCKS_PER_SEC << endl;
 
-//	printf("Hello world!\n");
     return 0;
 }
 

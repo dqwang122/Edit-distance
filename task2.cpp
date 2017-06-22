@@ -182,7 +182,7 @@ int Findmin(Edge *edges, int nodeNum, string* nodes, string a, string start, str
 
 			EditDis_inner(cur, a, ppre, curedit);
 
-			/*cout << endl;
+		/*	cout << endl;
 			showarray(pre, target + 1);
 			showarray(curedit, target + 1);*/
 
@@ -248,7 +248,7 @@ void Task2(string infile, string outfile) {
 	get_char(a, Charset);
 	Edge *edges = new Edge[MAX_NODE_NUM_L];
 	map<int, int> HashNode = CreatGraph(nodes, nodeNum, Charset, edges);
-	// Show(HashNode, edges, nodeNum, nodes);
+	Show(HashNode, edges, nodeNum, nodes);
 	cout << "Create Graph complete." << endl;
 
 	int dist;

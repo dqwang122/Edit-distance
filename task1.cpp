@@ -1,14 +1,4 @@
-#include "stdio.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <algorithm>
-#include <time.h>
-
-using namespace std;
-
-vector<string> Operate = { "DEL", "INS", "SUB" };
+#include "task1.h"
 
 void readfile(string infile, string* lines) {
 	ifstream fin(infile);
@@ -23,8 +13,8 @@ int EditDis(string a, string b, int *Ops, char *Obj, int *Pos) {
 	edit = new int*[m + 1];
 	path = new int*[m + 1];
 	for (int i = 0; i <= m; i++) {
-		edit[i] = new int[n + 1]{0};
-		path[i] = new int[n + 1]{0};
+		edit[i] = new int[n + 1]{ 0 };
+		path[i] = new int[n + 1]{ 0 };
 	}
 	for (int i = 0; i <= m; i++)
 		edit[i][0] = i;
@@ -36,7 +26,7 @@ int EditDis(string a, string b, int *Ops, char *Obj, int *Pos) {
 			int DEL = edit[i - 1][j] + 1;
 			int INS = edit[i][j - 1] + 1;
 			int SUB = edit[i - 1][j - 1] + diff;
-			
+
 			int op;
 			if (DEL <= INS && DEL <= SUB) {
 				edit[i][j] = DEL;
@@ -54,7 +44,7 @@ int EditDis(string a, string b, int *Ops, char *Obj, int *Pos) {
 			if (op == 2 && diff == 0)
 				path[i][j] = -1;
 			else
-				path[i][j] = op;				
+				path[i][j] = op;
 		}
 	}
 	int dist = edit[m][n];
@@ -72,7 +62,7 @@ int EditDis(string a, string b, int *Ops, char *Obj, int *Pos) {
 			break;
 		case 1:
 			Ops[cnt] = 1;
-			Obj[cnt] = b[j-1];
+			Obj[cnt] = b[j - 1];
 			Pos[cnt] = i;
 			cnt++;
 			j--;
@@ -124,4 +114,3 @@ void Task1(string infile, string outfile) {
 	dist = EditDis(a, b, Ops, Obj, Pos);
 	writefile(outfile, dist, Ops, Obj, Pos);
 }
-

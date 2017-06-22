@@ -1,14 +1,7 @@
 #ifndef TASK1_H
 #define TASK1_H
 
-#include "stdio.h"
-#include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <algorithm>
-
-using namespace std;
+#include "tool.h"
 
 const vector<string> Operate = { "DEL", "INS", "SUB" };
 

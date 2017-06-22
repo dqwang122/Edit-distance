@@ -2,21 +2,6 @@
 #define TASK2_H
 
 #include "task1.h"
-#include <cstdlib>
-#include <map>
-#include <list>
-#include <queue>
-// #include <Windows.h>
-#include<cstring>
-
-#define MAX_NODE_NUM 10000
-#define MAX_LEN 10000
-#define MAX_NODE_NUM_L 1000000
-
-struct Edge {
-	int node,weight;
-	list<int> adjList;
-};
 
 int readfile2(string infile, string* a, string* nodes);
 void writefile2(string outfile, string s, int dist, int *Ops, char *Obj, int *Pos);
