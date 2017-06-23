@@ -14,7 +14,7 @@ int main()
 	//cout << "outfile: ";
 	//cin >> outfile;
 
-	infile = "task2.in";
+	infile = "Task2/task2.in";
 	outfile = "out.txt";
 	
 	clock_t start = clock();

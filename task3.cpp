@@ -252,8 +252,10 @@ void initArray(int nodeNum, string* nodes, string a) {
 			delete[] edit[i];
 		}
 		delete[] edit;
+		printf("%.2lf%%\r", (double)(j * 100.0 / nodeNum));
 		
 	}
+	printf("\n");
 	fout.close();
 }
 
@@ -278,24 +280,24 @@ void Task3(string infile, string outfile) {
 	cout << "Init F[i][j] complete." << endl;
 
 
-	int dist;
-	int argmin = -1;
-	dist = MinEdit_L(edges, nodeNum, nodes, a, &argmin);
-	cout << dist << endl;
-	cout << argmin << endl;
-	cout << nodes[argmin] << endl;
+	// int dist;
+	// int argmin = -1;
+	// dist = MinEdit_L(edges, nodeNum, nodes, a, &argmin);
+	// cout << dist << endl;
+	// cout << argmin << endl;
+	// cout << nodes[argmin] << endl;
 
-	string str = restr(argmin, a, nodes, nodeNum);
-	cout << str << endl;
-	ofstream fout("string.txt");
-	fout << str << endl;
-	fout.close();
+	// string str = restr(argmin, a, nodes, nodeNum);
+	// cout << str << endl;
+	// ofstream fout("string.txt");
+	// fout << str << endl;
+	// fout.close();
 
-	int *Ops, *Pos;
-	char *Obj;
-	Ops = new int[dist];
-	Pos = new int[dist];
-	Obj = new char[dist];
-	dist = EditDis(a, str, Ops, Obj, Pos);
-	writefile2(outfile, str, dist, Ops, Obj, Pos);
+	// int *Ops, *Pos;
+	// char *Obj;
+	// Ops = new int[dist];
+	// Pos = new int[dist];
+	// Obj = new char[dist];
+	// dist = EditDis(a, str, Ops, Obj, Pos);
+	// writefile2(outfile, str, dist, Ops, Obj, Pos);
 };
