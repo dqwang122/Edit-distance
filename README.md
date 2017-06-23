@@ -1,4 +1,5 @@
 # Project：de Bruijn图上的编辑距离
+refer:[http://datamining-iip.fudan.edu.cn/ppts/algo/pj2017/index.html](http://datamining-iip.fudan.edu.cn/ppts/algo/pj2017/index.html)
 ## 更新记录
 2017-5-28:<br>
 前两个任务的测试数据<br>
