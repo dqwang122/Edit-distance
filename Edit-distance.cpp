@@ -9,18 +9,27 @@ using namespace std;
 int main()
 {
 	string infile, outfile;
-	//cout << "infile: ";
-	//cin >> infile;
-	//cout << "outfile: ";
-	//cin >> outfile;
+	int task;
+	cout << "infile: ";
+	cin >> infile;
+	cout << "outfile: ";
+	cin >> outfile;
+	cout << "Task(input 1 / 2 / 3):";
+	cin >> task;
 
-	infile = "Task2/task2.in";
-	outfile = "out.txt";
+	// infile = "test.txt";
+	// outfile = "out.txt";
 	
 	clock_t start = clock();
 
-	//Task1(infile, outfile);
-	Task3(infile, outfile);
+	if(task == 1)
+		Task1(infile, outfile);
+	else if(task==2)
+		Task2(infile, outfile);
+	else if(task==3)
+		Task3(infile, outfile);
+	else
+		cout << "Wrong input!" << endl;
 
 	clock_t end = clock();
 

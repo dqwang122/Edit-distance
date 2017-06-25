@@ -73,6 +73,7 @@ def EditDis(a, b):
 			Pos.append(i-1)
 			i = i - 1
 			j = j - 1
+	print edit
 	return dist, Ops, Pos	
 
 # Write standard File

@@ -141,7 +141,6 @@ int MinEdit_L(Edge *edges, int nodeNum, string* nodes, string a, int* argmin) {
 	for (int i = 1; i <= target; i++) {
 		string str = a.substr(0, i);
 
-		 //if i % BLOCKSIZE == 0, read the file of i/BLOCKSIZE into f[BLOCKSIZE][TAREGT + 1]
 		int imod = i % BLOCKSIZE;
 		if (i == 1 || imod == 0) {
 			int No = i / BLOCKSIZE;
@@ -272,13 +271,16 @@ void Task3(string infile, string outfile) {
 	//Show(HashNode, edges, nodeNum, nodes);
 	cout << "Create Graph complete." << endl;
 
-	int k = nodes[0].length();
-	int target = a.length();
-	for (int j = 0; j < nodeNum; j++)
-		f[0][j] = k;
-	initArray(nodeNum, nodes, a);
-	cout << "Init F[i][j] complete." << endl;
+	// int k = nodes[0].length();
+	// int target = a.length();
+	// for (int j = 0; j < nodeNum; j++)
+		// f[0][j] = k;
+	// initArray(nodeNum, nodes, a);
+	// cout << "Init F[i][j] complete." << endl;
 
+	string str;
+	int dist;
+	str = Connect(nodes, a, nodeNum, edges);
 
 	// int dist;
 	// int argmin = -1;
@@ -295,9 +297,9 @@ void Task3(string infile, string outfile) {
 
 	// int *Ops, *Pos;
 	// char *Obj;
-	// Ops = new int[dist];
-	// Pos = new int[dist];
-	// Obj = new char[dist];
+	// Ops = new int[MAX_LEN_L];
+	// Pos = new int[MAX_LEN_L];
+	// Obj = new char[MAX_LEN_L];
 	// dist = EditDis(a, str, Ops, Obj, Pos);
 	// writefile2(outfile, str, dist, Ops, Obj, Pos);
 };
