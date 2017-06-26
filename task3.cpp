@@ -271,35 +271,35 @@ void Task3(string infile, string outfile) {
 	//Show(HashNode, edges, nodeNum, nodes);
 	cout << "Create Graph complete." << endl;
 
-	// int k = nodes[0].length();
-	// int target = a.length();
-	// for (int j = 0; j < nodeNum; j++)
-		// f[0][j] = k;
-	// initArray(nodeNum, nodes, a);
-	// cout << "Init F[i][j] complete." << endl;
+	int k = nodes[0].length();
+	int target = a.length();
+	for (int j = 0; j < nodeNum; j++)
+		f[0][j] = k;
+	initArray(nodeNum, nodes, a);
+	cout << "Init F[i][j] complete." << endl;
 
-	string str;
-	int dist;
-	str = Connect(nodes, a, nodeNum, edges);
-
+	// string str;
 	// int dist;
-	// int argmin = -1;
-	// dist = MinEdit_L(edges, nodeNum, nodes, a, &argmin);
-	// cout << dist << endl;
-	// cout << argmin << endl;
-	// cout << nodes[argmin] << endl;
+	// str = Connect(nodes, a, nodeNum, edges);
 
-	// string str = restr(argmin, a, nodes, nodeNum);
-	// cout << str << endl;
-	// ofstream fout("string.txt");
-	// fout << str << endl;
-	// fout.close();
+	int dist;
+	int argmin = -1;
+	dist = MinEdit_L(edges, nodeNum, nodes, a, &argmin);
+	cout << dist << endl;
+	cout << argmin << endl;
+	cout << nodes[argmin] << endl;
 
-	// int *Ops, *Pos;
-	// char *Obj;
-	// Ops = new int[MAX_LEN_L];
-	// Pos = new int[MAX_LEN_L];
-	// Obj = new char[MAX_LEN_L];
-	// dist = EditDis(a, str, Ops, Obj, Pos);
-	// writefile2(outfile, str, dist, Ops, Obj, Pos);
+	string str = restr(argmin, a, nodes, nodeNum);
+	cout << str << endl;
+	ofstream fout("string.txt");
+	fout << str << endl;
+	fout.close();
+
+	int *Ops, *Pos;
+	char *Obj;
+	Ops = new int[MAX_LEN_L];
+	Pos = new int[MAX_LEN_L];
+	Obj = new char[MAX_LEN_L];
+	dist = EditDis(a, str, Ops, Obj, Pos);
+	writefile2(outfile, str, dist, Ops, Obj, Pos);
 };

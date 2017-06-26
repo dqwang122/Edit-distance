@@ -168,38 +168,40 @@ string Connect(string *nodes, string a, int nodeNum, Edge *edges) {
 		fout << endl;
 	}
 
-	// srand((int)time(0));
-	// int pre;
-	// for (int i = 0; i < target; i++) {
-		// if (i == 0) {
-			// int idx = random(start.size());
-			// str = nodes[idx];
-			// pre = idx;
-		// }
-		// list<int>::iterator p = edges[pre].adjList.begin();
-		// int cnt = 0;
-		// int whole = 0;
-		// int next[4], total[4];
-		// while (p != edges[pre].adjList.end()) {
-			// if (PosTable[*p].find(i+1) != PosTable[*p].end()) {
-				// next[cnt++] = *p;
-			// }
-			// total[whole++] = *p;
-			// p++;
-		// }
-		// if (cnt) {
-			// int idx = random(cnt);
-			// str += nodes[next[idx]][k - 1];
-			// pre = next[idx];
-		// }
-		// else if (whole) {
-			// int idx = random(whole);
-			// str += nodes[total[idx]][k - 1];
-			// pre = total[idx];
-		// }
-		// else
-			// break;
-	// }
+	// Todo: load file in block
+	
+	srand((int)time(0));
+	int pre;
+	for (int i = 0; i < target; i++) {
+		if (i == 0) {
+			int idx = random(start.size());
+			str = nodes[idx];
+			pre = idx;
+		}
+		list<int>::iterator p = edges[pre].adjList.begin();
+		int cnt = 0;
+		int whole = 0;
+		int next[4], total[4];
+		while (p != edges[pre].adjList.end()) {
+			if (PosTable[*p].find(i+1) != PosTable[*p].end()) {
+				next[cnt++] = *p;
+			}
+			total[whole++] = *p;
+			p++;
+		}
+		if (cnt) {
+			int idx = random(cnt);
+			str += nodes[next[idx]][k - 1];
+			pre = next[idx];
+		}
+		else if (whole) {
+			int idx = random(whole);
+			str += nodes[total[idx]][k - 1];
+			pre = total[idx];
+		}
+		else
+			break;
+	}
 	cout << str << endl;
 	return str;
 }
